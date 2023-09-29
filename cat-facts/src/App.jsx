@@ -14,7 +14,7 @@ function App() {
     <main className='grid place-items-center h-1/2'>
       <Header />
       <CatContainer image={img} text={fact} isLoading={isLoading} error={error} />
-      <Button handleClick={getFact} />
+      <Button handleClick={getFact} isLoading={isLoading} />
     </main>
   )
 }
