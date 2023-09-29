@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 export function CatContainer({ image, text, isLoading, error }) {
-    if (isLoading) {
+    if (isLoading || !text) {
         return (
             <div role="status" className="animate-pulse md:flex-col md:items-center md:justify-center md:gap-2">
                 <div className="flex items-center justify-center w-full h-48 bg-gray-300 rounded sm:w-96 dark:bg-gray-700">
@@ -12,8 +12,6 @@ export function CatContainer({ image, text, isLoading, error }) {
                     <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-2.5"></div>
                     <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
                     <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5"></div>
-                    <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[460px] mb-2.5"></div>
-                    <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
                 </div>
                 <span className="sr-only">Loading...</span>
             </div>
@@ -26,12 +24,6 @@ export function CatContainer({ image, text, isLoading, error }) {
         </p>
     }
 
-    if (!text) {
-        return <p
-            className="tracking-tighter text-gray-500 md:text-lg dark:text-gray-400 text-center p-2 w-3/4 max-w-screen-md">
-            Click the button to discover a cat fact
-        </p>
-    }
     return (
         <section className="grid place-items-center p-2">
             <img

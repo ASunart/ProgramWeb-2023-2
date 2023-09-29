@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { fetchFact, fetchImg } from "../services";
 
 export const useCats = () => {
@@ -6,34 +6,33 @@ export const useCats = () => {
     const [img, setImg] = useState('');
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
-  
+
     const getFact = () => {
-      fetchFact()
-        .then(data => setFact(data))
-        .catch(() =>
+      fetchFact().then(setFact)
+      .catch(() =>
           setError('Sorry we had some cat issues over here, try again')
         )
     }
-  
-    const getImg = useCallback(() => {
+
+    useEffect(() => {
+      getFact()
+    }, [])
+
+    useEffect(() => {
       setIsLoading(true)
       fetchImg({fact})
-      .then(image => setImg(image))
+      .then(setImg)
       .catch(() =>
         setError('Sorry we had some cat issues over here, try again')
       )
       .finally(() => setIsLoading(false))
     }, [fact])
-  
-    useEffect(() => {
-      getImg()
-    }, [getImg])
 
     return {
         img,
         fact,
         isLoading,
-        getFact,
-        error
+        error,
+        getFact
     }
 }
