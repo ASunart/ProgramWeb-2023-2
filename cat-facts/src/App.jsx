@@ -1,20 +1,14 @@
 import { Button, CatContainer, Header } from './components';
-import { useCats } from './hooks/useCats';
+import { CatContextProvider } from './context/CatContextProvider';
 
 function App() {
-  const {
-    img,
-    fact,
-    isLoading,
-    error,
-    getFact
-  } = useCats()
-
   return (
     <main className='grid place-items-center h-1/2'>
+      <CatContextProvider>
       <Header />
-      <CatContainer image={img} text={fact} isLoading={isLoading} error={error} />
-      <Button handleClick={getFact} isLoading={isLoading} />
+      <CatContainer />
+      <Button />
+      </CatContextProvider>
     </main>
   )
 }

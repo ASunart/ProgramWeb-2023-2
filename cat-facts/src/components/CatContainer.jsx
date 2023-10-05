@@ -1,6 +1,15 @@
+import { useCats } from "../hooks/useCats"
+
 /* eslint-disable react/prop-types */
-export function CatContainer({ image, text, isLoading, error }) {
-    if (isLoading || !text) {
+export function CatContainer() {
+    const {
+        img,
+        fact,
+        isLoading,
+        error
+    } = useCats()
+
+    if (isLoading || !img) {
         return (
             <div role="status" className="animate-pulse md:flex-col md:items-center md:justify-center md:gap-2">
                 <div className="flex items-center justify-center w-full h-48 bg-gray-300 rounded sm:w-96 dark:bg-gray-700">
@@ -27,11 +36,11 @@ export function CatContainer({ image, text, isLoading, error }) {
     return (
         <section className="grid place-items-center p-2">
             <img
-                src={image}
+                src={img}
                 alt="Cat image"
                 className="h-auto max-w-sm rounded-lg shadow-md dark:shadow-gray-800 m-4"
             />
-            <p className="tracking-tighter text-gray-500 md:text-lg dark:text-gray-400 text-center p-2 w-3/4 max-w-screen-md">{text}</p>
+            <p className="tracking-tighter text-gray-500 md:text-lg dark:text-gray-400 text-center p-2 w-3/4 max-w-screen-md">{fact}</p>
         </section>
     )
 }
